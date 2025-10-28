@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
 
+Route::get('/dashboard/user', function () {
+    return view('dashboard.User.dashboard');
+})->middleware(['auth'])->name('dashboard.user');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
