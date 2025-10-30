@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -17,11 +18,21 @@ Route::middleware('guest')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('/User/login', [AuthenticatedSessionController::class, 'create'])
+
+    //User login ##########################################################
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')
                 ->name('login');
 
-    Route::post('/User/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest')->name('login.user');
 
+
+
+
+    //Admin login ###########################################################
+    Route::post('/login/admin', [AdminController::class, 'store'])->middleware('guest')->name('login.admin');
+
+
+    //#######################################################################
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
@@ -55,5 +66,9 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+                ->name('logout.user');
 });
+
+Route::post('logout/admin', [AdminController::class, 'destroy'])
+    ->middleware('auth:admin')
+    ->name('logout.admin');

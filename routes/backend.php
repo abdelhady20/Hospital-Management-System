@@ -15,16 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
+//Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
 
-Route::get('/dashboard/user', function () {
-    return view('dashboard.User.dashboard');
-})->middleware(['auth'])->name('dashboard.user');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+
+    Route::get('/dashboard/user', function () {
+        return view('Dashboard.User.dashboard');
+    })->middleware(['auth'])->name('dashboard.user');
+
+    Route::get('/dashboard/admin', function () {
+        return view('Dashboard.Admin.dashboard');
+    })->middleware(['auth:admin'])->name('dashboard.admin');
+
+    require __DIR__.'/auth.php';
 });
 
-require __DIR__.'/auth.php';
+
+
+//Route::middleware('auth')->group(function () {
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//});
+
+

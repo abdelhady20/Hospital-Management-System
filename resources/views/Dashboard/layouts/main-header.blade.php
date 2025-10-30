@@ -16,51 +16,44 @@
 							<input class="form-control" placeholder="Search for anything..." type="search"> <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
 						</div>
 					</div>
+
 					<div class="main-header-right">
-						<ul class="nav">
-							<li class="">
-								<div class="dropdown  nav-itemd-none d-md-flex">
-									<a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown" aria-expanded="false">
-										<span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
-										<div class="my-auto">
-											<strong class="mr-2 ml-2 my-auto">English</strong>
-										</div>
-									</a>
-									<div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-										<a href="#" class="dropdown-item d-flex ">
-											<span class="avatar  ml-3 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/french_flag.jpg')}}" alt="img"></span>
-											<div class="d-flex">
-												<span class="mt-2">French</span>
-											</div>
-										</a>
-										<a href="#" class="dropdown-item d-flex">
-											<span class="avatar  ml-3 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/germany_flag.jpg')}}" alt="img"></span>
-											<div class="d-flex">
-												<span class="mt-2">Germany</span>
-											</div>
-										</a>
-										<a href="#" class="dropdown-item d-flex">
-											<span class="avatar ml-3 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/italy_flag.jpg')}}" alt="img"></span>
-											<div class="d-flex">
-												<span class="mt-2">Italy</span>
-											</div>
-										</a>
-										<a href="#" class="dropdown-item d-flex">
-											<span class="avatar ml-3 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/russia_flag.jpg')}}" alt="img"></span>
-											<div class="d-flex">
-												<span class="mt-2">Russia</span>
-											</div>
-										</a>
-										<a href="#" class="dropdown-item d-flex">
-											<span class="avatar  ml-3 align-self-center bg-transparent"><img src="{{URL::asset('Dashboard/img/flags/spain_flag.jpg')}}" alt="img"></span>
-											<div class="d-flex">
-												<span class="mt-2">spain</span>
-											</div>
-										</a>
-									</div>
-								</div>
-							</li>
-						</ul>
+                        <ul class="nav">
+                            <li class="">
+                                <div class="dropdown  nav-item d-none d-md-flex">
+                                    <a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown"
+                                       aria-expanded="false">
+                                        @if (App::getLocale() == 'ar')
+                                            <span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img
+                                                    src="{{URL::asset('Dashboard/img/flags/egypt_flag.png')}}" alt="img"></span>
+                                            <strong
+                                                class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                        @else
+                                            <span class="avatar country-Flag mr-0 align-self-center bg-transparent"><img
+                                                    src="{{URL::asset('Dashboard/img/flags/us_flag.jpg')}}" alt="img"></span>
+                                            <strong
+                                                class="mr-2 ml-2 my-auto">{{ LaravelLocalization::getCurrentLocaleName() }}</strong>
+                                        @endif
+                                        <div class="my-auto">
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                               href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                @if($properties['native'] == "English")
+                                                    <i class="flag-icon flag-icon-us"></i>
+                                                @elseif($properties['native'] == "العربية")
+                                                    <i class="flag-icon flag-icon-eg"></i>
+                                                @endif
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
 						<div class="nav nav-item  navbar-nav-right ml-auto">
 							<div class="nav-link" id="bs-example-navbar-collapse-1">
 								<form class="navbar-form" role="search">
@@ -264,17 +257,21 @@
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
 
+                                    @if (auth('web')->check())
+                                        <form method="POST" action="{{ route('logout.user') }}">
+                                            @else
+                                                <form method="POST" action="{{ route('logout.admin') }}">
+                                                    @endif
+                                                    @csrf
 
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+                                                    <a class="dropdown-item" href="#"
+                                                       onclick="event.preventDefault(); this.closest('form').submit();">
+                                                        <i class="bx bx-log-out"></i> Sign Out
+                                                    </a>
+                                                </form>
 
-                                        <a class="dropdown-item" href="route('logout')"
-                                           onclick="event.preventDefault();
-                                        this.closest('form').submit();"><i class="bx bx-log-out"></i> Sign Out</a>
 
-                                    </form>
-
-								</div>
+                                </div>
 							</div>
 							<div class="dropdown main-header-message right-toggle">
 								<a class="nav-link pr-0" data-toggle="sidebar-left" data-target=".sidebar-left">
@@ -286,3 +283,4 @@
 				</div>
 			</div>
 <!-- /main-header -->
+
