@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +24,31 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
-
+    //#################################################### User Dashboard ##########################
     Route::get('/dashboard/user', function () {
         return view('Dashboard.User.dashboard');
     })->middleware(['auth'])->name('dashboard.user');
+    //#################################################### Backend User Dashboard ##########################
 
+
+
+
+
+    //#################################################### Admin Dashboard ##########################
     Route::get('/dashboard/admin', function () {
         return view('Dashboard.Admin.dashboard');
     })->middleware(['auth:admin'])->name('dashboard.admin');
+    //#################################################### Backend Admin Dashboard ##########################
 
+        Route::middleware(['auth:admin'])->group(function () {
+
+            Route::resource('Sections', SectionController::class);
+
+
+        });
+
+
+    //##############################################################################
     require __DIR__.'/auth.php';
 });
 

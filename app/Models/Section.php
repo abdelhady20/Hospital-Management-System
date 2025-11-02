@@ -10,5 +10,6 @@ class Section extends Model
 {
     use HasFactory, Translatable;
 
-    protected $reanslatedAttributes = ['name'];
+    protected $translatedAttributes = ['name'];
+    protected $fillable =['name'];
 }
