@@ -5,6 +5,7 @@ return [
     'Main'=>'Hospital management software',
     'index'=>'Home',
     'sections'=>'Sections',
-    'view_all'=>'Show All'
+    'view_all'=>'Show All',
+    'Doctors'=>'Doctors',
 
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,8 +42,13 @@ Route::group(
     //#################################################### Backend Admin Dashboard ##########################
 
         Route::middleware(['auth:admin'])->group(function () {
-
+            //section routes
             Route::resource('Sections', SectionController::class);
+
+            //Doctor routes
+            Route::resource('Doctors', DoctorController::class);
+            Route::post('update_password', [DoctorController::class, 'update_password'])->name('update_password');
+            Route::post('update_status', [DoctorController::class, 'update_status'])->name('update_status');
 
 
         });

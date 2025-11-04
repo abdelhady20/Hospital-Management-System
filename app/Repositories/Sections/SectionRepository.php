@@ -38,4 +38,11 @@ class SectionRepository implements SectionRepositoryInterface
         session()->flash('delete');
         return redirect()->route('Sections.index');
     }
+
+    public function show($id){
+
+        $doctors = Section::findOrFail($id)->doctors;
+        $section = Section::findOrFail($id);
+        return view('Dashboard.Sections.show_doctors',compact('doctors','section'));
+    }
 }
