@@ -14,10 +14,14 @@
                 {{ csrf_field() }}
                 @csrf
                 <div class="modal-body">
-                    <label for="exampleInputPassword1">{{trans('Dashboard/sections_trans.name_sections')}}</label>
+                    <label for="exampleInputPassword1">{{ trans('Dashboard/sections_trans.name_sections') }}</label>
                     <input type="hidden" name="id" value="{{ $section->id }}">
                     <input type="text" name="name" value="{{ $section->name }}" class="form-control">
+
+                    <label for="exampleInputDescription" class="mt-3">{{ trans('Dashboard/sections_trans.description') }}</label>
+                    <textarea name="description" class="form-control" rows="3">{{ $section->description }}</textarea>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('Dashboard/sections_trans.submit')}}</button>

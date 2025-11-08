@@ -40,10 +40,13 @@ class DoctorRepository implements DoctorRepositoryInterface
             $doctors->phone = $request->phone;
             $doctors->status = 1;
             $doctors->save();
+
             // store trans
             $doctors->name = $request->name;
-            $doctors->appointments =implode(",",$request->appointments);
             $doctors->save();
+
+            //Pivot Table
+            $doctors->doctorappointments()->attach($request->appointment_id);
 
 
             //Upload img
@@ -85,7 +88,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
             $doctor->name = $request->name;
             $doctor->save();
-
+            //Pivot Table
             $doctor->doctorappointments()->sync($request->appointments);
 
             if ($request->has('photo')){

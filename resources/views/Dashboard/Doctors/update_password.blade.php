@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    {{ trans('doctors.update_password') }} {{$doctor->name}}</h5>
+                    {{ trans('Dashboard/doctors.update_password') }} {{$doctor->name}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,12 +14,12 @@
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="password">{{ trans('doctors.new_password') }}</label>
+                        <label for="password">{{ trans('Dashboard/doctors.new_password') }}</label>
                         <input type="password" class="form-control" id="password" name="password" >
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirmation">{{ trans('doctors.confirm_password') }}</label>
+                        <label for="password_confirmation">{{ trans('Dashboard/doctors.confirm_password') }}</label>
                         <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
                     </div>
 

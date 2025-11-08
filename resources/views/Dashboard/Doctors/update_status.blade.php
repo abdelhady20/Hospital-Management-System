@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    {{ trans('doctors.Status_change') }}</h5>
+                    {{ trans('Dashboard/doctors.Status_change') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,11 +15,11 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="status">{{trans('doctors.Status')}}</label>
+                        <label for="status">{{trans('Dashboard/doctors.Status')}}</label>
                         <select class="form-control" id="status" name="status" required>
-                            <option value="" selected disabled>--{{trans('doctors.Choose')}}--</option>
-                            <option value="1">{{trans('doctors.Enabled')}}</option>
-                            <option value="0">{{trans('doctors.Not_enabled')}}</option>
+                            <option value="" selected disabled>--{{trans('Dashboard/doctors.Choose')}}--</option>
+                            <option value="1">{{trans('Dashboard/doctors.Enabled')}}</option>
+                            <option value="0">{{trans('Dashboard/doctors.Not_enabled')}}</option>
                         </select>
                     </div>
 

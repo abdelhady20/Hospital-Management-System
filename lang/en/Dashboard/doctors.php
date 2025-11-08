@@ -9,7 +9,9 @@ return [
     'Not_enabled' => 'Not_enabled',
     'Processes' => 'Processes',
     'Status' => 'Status',
+    'Status_change' => 'Change Status',
     'add_doctor' => 'Add Doctor',
+    'edit_doctor' => 'Edit Doctor',
     'delete_doctor' => 'Delete Doctor',
     'appointments' => 'appointments',
     'created_at' => 'created_at',
@@ -20,7 +22,11 @@ return [
     'phone' => 'phone',
     'price' => 'price',
     'section' => 'Section',
+    'Choose' => 'Choose',
     'submit' => 'submit',
+    'update_password'=>'Change Password',
+    'new_password'=>'New Password',
+    'confirm_password'=>'Confirm New Password',
 
 
 
