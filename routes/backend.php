@@ -52,6 +52,9 @@ Route::group(
             //Service
             Route::resource('Service', SingleServiceController::class);
 
+            //Livewire
+            Route::view('Add_GroupServices','livewire.GroupServices.include_create')->name('Add_GroupServices');
+
 
         });
 
