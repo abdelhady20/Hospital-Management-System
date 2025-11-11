@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
+use App\Http\Controllers\Dashboard\InsuranceController;
+use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +57,15 @@ Route::group(
 
             //Livewire
             Route::view('Add_GroupServices','livewire.GroupServices.include_create')->name('Add_GroupServices');
+
+            //Insurance
+            Route::resource('/insurance', InsuranceController::class);
+
+            //Ambulance
+            Route::resource('Ambulance', AmbulanceController::class);
+
+            //Patients
+            Route::resource('Patients', PatientController::class);
 
 
         });
