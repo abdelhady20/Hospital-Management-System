@@ -57,6 +57,7 @@ Route::group(
 
             //Livewire
             Route::view('Add_GroupServices','livewire.GroupServices.include_create')->name('Add_GroupServices');
+            Route::view('single_invoices','livewire.single_invoices.index')->name('single_invoices');
 
             //Insurance
             Route::resource('/insurance', InsuranceController::class);
