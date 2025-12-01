@@ -3,6 +3,9 @@
 namespace App\Repositories\Patients;
 
 use App\Models\Patient;
+use App\Models\PatientAccount;
+use App\Models\ReceiptAccount;
+use App\Models\single_invoice;
 use Illuminate\Support\Facades\Hash;
 
 class PatientRepository implements PatientRepositoryInterface
@@ -63,6 +66,18 @@ class PatientRepository implements PatientRepositoryInterface
         $Patient->save();
         session()->flash('edit');
         return redirect()->route('Patients.index');
+    }
+
+    public function show($id){
+        $Patient = patient::findorfail($id);
+        $invoices = single_invoice::where('patient_id', $id)->get();
+        $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
+        $Patient_accounts = PatientAccount::orWhereNotNull('single_invoice_id')
+            ->orWhereNotNull('receipt_id')
+            ->orWhereNotNull('Payment_id')
+            ->where('patient_id', $id)
+            ->get();
+        return view('Dashboard.Patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts'));
     }
 
     public function destroy($request)

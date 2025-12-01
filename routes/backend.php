@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
@@ -59,6 +60,7 @@ Route::group(
             //Livewire
             Route::view('Add_GroupServices','livewire.GroupServices.include_create')->name('Add_GroupServices');
             Route::view('single_invoices','livewire.single_invoices.index')->name('single_invoices');
+            Route::view('Print_single_invoices','livewire.single_invoices.print')->name('Print_single_invoices');
 
             //Insurance
             Route::resource('/insurance', InsuranceController::class);
@@ -71,6 +73,9 @@ Route::group(
 
             //Receipt
             Route::resource('Receipt',ReceiptAccountController::class);
+
+            //Payment
+            Route::resource('Payment', PaymentAccountController::class);
 
 
         });

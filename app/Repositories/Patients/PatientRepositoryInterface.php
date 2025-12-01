@@ -14,6 +14,8 @@ interface PatientRepositoryInterface
     public function edit($id);
     // update Patients
     public function update($request);
+    // show Patients
+    public function show($id);
     // Deleted Patients
     public function destroy($request);
 }

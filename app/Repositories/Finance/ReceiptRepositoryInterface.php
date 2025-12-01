@@ -19,6 +19,9 @@ interface ReceiptRepositoryInterface
     // Update Receipt
     public function update($request);
 
+    // show Receipt
+    public function show($id);
+
     // destroy Receipt
     public function destroy($request);
 }

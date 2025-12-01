@@ -12,4 +12,10 @@ class Patient extends Model
     use HasFactory;
     public $translatedAttributes = ['name','Address'];
     public $fillable= ['email','Password','Date_Birth','Phone','Gender','Blood_Group'];
+
+    public function accounts()
+    {
+        return $this->hasMany(PatientAccount::class, 'patient_id');
+    }
+
 }
