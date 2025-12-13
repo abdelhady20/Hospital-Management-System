@@ -20,6 +20,10 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::ADMIN);
        }
 
+        if (auth('doctor')->check()) {
+            return redirect(RouteServiceProvider::DOCTOR);
+        }
+
         return $next($request);
     }
 }

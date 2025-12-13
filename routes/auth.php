@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\DoctorController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -30,6 +31,10 @@ Route::middleware('guest')->group(function () {
 
     //Admin login ###########################################################
     Route::post('/login/admin', [AdminController::class, 'store'])->middleware('guest')->name('login.admin');
+
+
+    //Doctor login ###########################################################
+    Route::post('/login/doctor', [DoctorController::class, 'store'])->middleware('guest')->name('login.doctor');
 
 
     //#######################################################################
@@ -72,3 +77,7 @@ Route::middleware('auth')->group(function () {
 Route::post('logout/admin', [AdminController::class, 'destroy'])
     ->middleware('auth:admin')
     ->name('logout.admin');
+
+Route::post('/logout/doctor', [DoctorController::class, 'destroy'])
+    ->middleware('auth:doctor')
+    ->name('logout.doctor');

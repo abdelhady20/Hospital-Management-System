@@ -104,7 +104,7 @@
                                                     @foreach($invoices as $invoice)
                                                         <tr>
                                                             <td>{{$loop->iteration}}</td>
-                                                            <td>{{$invoice->Service->name}}</td>
+                                                            <td>{{$invoice->Service->name ?? $invoice->Group->name}}</td>
                                                             <td>{{$invoice->invoice_date}}</td>
                                                             <td>{{$invoice->total_with_tax}}</td>
                                                             <td>{{$invoice->type == 1 ? 'نقدي' : 'اجل'}}</td>
@@ -183,13 +183,17 @@
                                                             <td>{{$loop->iteration}}</td>
                                                             <td>{{$Patient_account->date}}</td>
                                                             <td>
-                                                                {{ $Patient_account->single_invoice?->Service->name
-                                                                    ?? $Patient_account->ReceiptAccount?->description
-                                                                    ?? $Patient_account->PaymentAccount?->description
-                                                                    ?? 'لا يوجد بيانات'
-                                                                }}
-                                                            </td>
+                                                                @if($Patient_account->invoice_id == true)
+                                                                    {{$Patient_account->invoice->Service->name ?? $Patient_account->invoice->Group->name }}
 
+                                                                @elseif($Patient_account->receipt_id == true)
+                                                                    {{$Patient_account->ReceiptAccount->description}}
+
+                                                                @elseif($Patient_account->Payment_id == true)
+                                                                    {{$Patient_account->PaymentAccount->description}}
+                                                                @endif
+
+                                                            </td>
                                                             <td>{{ $Patient_account->Debit}}</td>
                                                             <td>{{ $Patient_account->credit}}</td>
                                                             <td></td>
