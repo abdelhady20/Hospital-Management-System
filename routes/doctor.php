@@ -1,8 +1,11 @@
 <?php
 
 
-use App\Http\Controllers\doctor\DiagnosticController;
-use App\Http\Controllers\doctor\InvoiceController;
+use App\Http\Controllers\Dashboard_Doctor\DiagnosticController;
+use App\Http\Controllers\Dashboard_Doctor\InvoiceController;
+use App\Http\Controllers\Dashboard_Doctor\LaboratorieController;
+use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
+use App\Http\Controllers\Dashboard_Doctor\RayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +58,13 @@ Route::group(
 
             //############################# Diagnostics route ##########################################
             Route::resource('Diagnostics', DiagnosticController::class);
+
+            //############################# rays route ##########################################
+            Route::resource('rays', RayController::class);
+            Route::get('patient_details/{id}', [PatientDetailsController::class,'index'])->name('patient_details');
+
+            //############################# Laboratories route ##########################################
+            Route::resource('Laboratories', LaboratorieController::class);
 
 
         });
