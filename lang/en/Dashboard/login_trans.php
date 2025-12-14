@@ -8,5 +8,6 @@ return [
     'user' =>'Log in as a patient',
     'admin' =>'Log in as a admin',
     'doctor' =>'Log in as a doctor',
+    'ray_employee' =>'Log in as a Ray Employee',
 
 ];
