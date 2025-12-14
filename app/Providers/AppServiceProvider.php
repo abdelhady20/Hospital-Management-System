@@ -22,6 +22,8 @@ use App\Repositories\Insurances\InsuranceRepository;
 use App\Repositories\Insurances\InsuranceRepositoryInterface;
 use App\Repositories\Patients\PatientRepository;
 use App\Repositories\Patients\PatientRepositoryInterface;
+use App\Repositories\RayEmployee\RayEmployeeRepository;
+use App\Repositories\RayEmployee\RayEmployeeRepositoryInterface;
 use App\Repositories\Sections\SectionRepository;
 use App\Repositories\Sections\SectionRepositoryInterface;
 use App\Repositories\Services\ServiceRepository;
@@ -52,6 +54,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DiagnosisRepositoryInterface::class, DiagnosisRepository::class);
         $this->app->bind(RaysRepositoryInterface::class, RaysRepository::class);
         $this->app->bind(LaboratoriesRepositoryInterface::class, LaboratoriesRepository::class);
+
+        //RayEmployee
+        $this->app->bind(RayEmployeeRepositoryInterface::class, RayEmployeeRepository::class);
+
     }
 
     /**
