@@ -10,4 +10,5 @@ class RayEmployee extends Authenticatable
 {
     use HasFactory;
     protected $guarded=[];
+
 }

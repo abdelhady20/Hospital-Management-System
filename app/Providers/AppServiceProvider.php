@@ -57,6 +57,9 @@ class AppServiceProvider extends ServiceProvider
 
         //RayEmployee
         $this->app->bind(RayEmployeeRepositoryInterface::class, RayEmployeeRepository::class);
+        $this->app->bind('App\Repositories\Dashboard_Ray_Employee\InvoicesRepositoryInterface',
+            'App\Repositories\Dashboard_Ray_Employee\InvoicesRepository');
+
 
     }
 

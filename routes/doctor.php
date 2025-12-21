@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Dashboard_Doctor\DiagnosticController;
+
 use App\Http\Controllers\Dashboard_Doctor\InvoiceController;
 use App\Http\Controllers\Dashboard_Doctor\LaboratorieController;
 use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;

@@ -35,7 +35,15 @@ Route::group(
     })->middleware(['auth:ray_employee'])->name('dashboard.ray_employee');
 
     //############################# invoices route ##########################################
-    Route::get('invoices', [InvoiceController::class,'index'])->name('invoices.index');
+    Route::middleware(['auth:ray_employee'])->group(function () {
+
+        //############################# invoices route ##########################################
+        Route::resource('invoices_ray_employee', InvoiceController::class);
+        Route::get('completed_invoices', [InvoiceController::class,'completed_invoices'])->name('completed_invoices');
+        Route::get('view_rays/{id}', [InvoiceController::class,'viewRays'])->name('view_rays');
+
+
+    });
 
 
 
