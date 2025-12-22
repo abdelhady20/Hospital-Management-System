@@ -136,7 +136,7 @@
 
                                             {{--form RayEmployee--}}
                                             <div class="panel" id="ray_employee">
-                                                <h2>الدخول موظف اشعة</h2>
+                                                <h2>{{trans('Dashboard/login_trans.ray_employee')}}</h2>
                                                 <form method="POST" action="{{ route('login.ray_employee') }}">
                                                     @csrf
                                                     <div class="form-group">
