@@ -28,7 +28,10 @@ class InvoiceController extends Controller
         return $this->invoices->completedInvoices();
     }
 
-
+    public function showLaboratorie($id)
+    {
+        return $this->invoices->showLaboratorie($id);
+    }
     public function create()
     {
         //
