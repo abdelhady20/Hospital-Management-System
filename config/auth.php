@@ -48,6 +48,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+
         'doctor' => [
             'driver' => 'session',
             'provider' => 'doctors',
@@ -90,6 +95,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
         ],
 
         'doctors' => [

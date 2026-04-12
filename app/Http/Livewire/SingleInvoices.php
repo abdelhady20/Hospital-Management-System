@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\CreateInvoice;
 use App\Models\Doctor;
 use App\Models\FundAccount;
 use App\Models\Invoice;
+use App\Models\Notification;
 use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\Service;
@@ -18,8 +20,14 @@ class SingleInvoices extends Component
     public $InvoiceSaved,$InvoiceUpdated;
     public $show_table = true;
     public $tax_rate = 17;
+    public $username;
     public $updateMode = false;
     public $price,$discount_value = 0 ,$patient_id,$doctor_id,$section_id,$type,$Service_id,$single_invoice_id, $catchError;
+
+    public function mount(){
+
+        $this->username = auth()->user()->name;
+    }
 
     public function render()
     {
@@ -157,6 +165,20 @@ class SingleInvoices extends Component
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+
+                    $notifications = new Notification();
+                    $notifications->user_id = $this->doctor_id;
+                    $patient = Patient::find($this->patient_id);
+                    $notifications->message = "كشف جديد : ".$patient->name;
+                    $notifications->save();
+
+                    $data=[
+                        'patient_id'=>$this->patient_id,
+                        'invoice_id'=>$single_invoices->id,
+                        'doctor_id'=>$this->doctor_id,
+                    ];
+
+                    event(new CreateInvoice($data));
                 }
                 DB::commit();
             }
