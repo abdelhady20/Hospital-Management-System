@@ -19,13 +19,13 @@ class DoctorSeeder extends Seeder
      */
     public function run()
     {
-        $doctors = Doctor::factory()->count(30)->create();
-        $appointments = Appointment::all();
-
-        foreach ($doctors as $doctor) {
-            $randomAppointments = $appointments->shuffle()->take(3);
-            $doctor->doctorappointments()->attach($randomAppointments->pluck('id')->toArray());
-        }
+         Doctor::factory()->count(30)->create();
+//        $appointments = Appointment::all();
+//
+//        foreach ($doctors as $doctor) {
+//            $randomAppointments = $appointments->shuffle()->take(3);
+//            $doctor->doctorappointments()->attach($randomAppointments->pluck('id')->toArray());
+//        }
 
     }
 }
