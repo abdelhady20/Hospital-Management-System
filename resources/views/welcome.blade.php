@@ -63,7 +63,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt=""/>
+                                        <img src="{{URL::asset('WebSite/images/main-slider/444.jpg')}}" alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <div class="image">
-                                        <img src="{{URL::asset('WebSite/images/main-slider/3.jpg')}}" alt=""/>
+                                        <img src="{{URL::asset('WebSite/images/main-slider/444.jpg')}}" alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                     <div class="image-column col-lg-5 col-md-12 col-sm-12">
                         <div class="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div class="image">
-                                <img src="{{URL::asset('WebSite/images/resource/image-3.jpg')}}" alt=""/>
+                                <img src="{{URL::asset('WebSite/images/resource/555.jpg')}}" alt=""/>
                             </div>
                         </div>
                     </div>
@@ -527,7 +527,7 @@
     <section class="video-section" style="background-image:url(images/background/5.jpg)">
         <div class="auto-container">
             <div class="content">
-                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image play-box"><span
+                <a href="https://www.youtube.com/watch?v=hLZo5jS33Bg" class="lightbox-image play-box"><span
                         class="flaticon-play-button"><i class="ripple"></i></span></a>
                 <div class="text">نحن نهتم بصحتك<h2>نحن نهتم بك</h2>
                 </div>
